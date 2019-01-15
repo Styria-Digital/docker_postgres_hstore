@@ -5,7 +5,7 @@ This image ensures that the default created database and all subsequently create
 # Usage
 In order to run a basic container capable of serving a HStore-enabled database, start a container as follows:
 
-docker run --name some-postgis -d styria-digital/postgres_hstore
+docker run --name some-postgis -d styriadigital/postgres_hstore
 For more detailed instructions about how to start and control your Postgres container, see the documentation for the postgres image [here](https://hub.docker.com/_/postgres).
 
-See the [Hstore](http://postgresguide.com/cool/hstore.html) documentation for more details on your options for creating and using a spatially-enabled database.
+See the [Hstore](http://postgresguide.com/cool/hstore.html) documentation for more details on your options for creating and using a hstore database.
