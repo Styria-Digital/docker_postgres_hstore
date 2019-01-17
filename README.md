@@ -28,4 +28,7 @@ Push to master triggers autobuild on dockerhub and automatically updates appropr
 # Full Text Search
 
 For more information on the Croatian dictionary, see the
-[krunose/hr-hunspell](https://github.com/krunose/hr-hunspell).
+[krunose/hr-hunspell](https://github.com/krunose/hr-hunspell) repository.
+
+For more information on stop words, see the
+[6/stopwords-json](https://github.com/6/stopwords-json) repository.
