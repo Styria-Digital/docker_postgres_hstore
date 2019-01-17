@@ -24,3 +24,8 @@ for more details on your options for creating and using a hstore database.
 # Build
 
 Push to master triggers autobuild on dockerhub and automatically updates appropriate tags.
+
+# Full Text Search
+
+For more information on the Croatian dictionary, see the
+[krunose/hr-hunspell](https://github.com/krunose/hr-hunspell).
