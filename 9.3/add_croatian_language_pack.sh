@@ -15,7 +15,7 @@
     ALTER TEXT SEARCH CONFIGURATION croatian
         ALTER MAPPING FOR asciiword, asciihword, hword_asciipart,
                         word, hword, hword_part
-        WITH croatian_ispell;
+        WITH croatian_ispell, english_stem;
 
     -- Remove fulltext search mappings for special types
     ALTER TEXT SEARCH CONFIGURATION croatian
@@ -39,7 +39,7 @@ EOSQL
     ALTER TEXT SEARCH CONFIGURATION croatian
         ALTER MAPPING FOR asciiword, asciihword, hword_asciipart,
                         word, hword, hword_part
-        WITH croatian_ispell;
+        WITH croatian_ispell, english_stem;
 
     -- Remove fulltext search mappings for special types
     ALTER TEXT SEARCH CONFIGURATION croatian
