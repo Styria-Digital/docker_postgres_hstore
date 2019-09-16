@@ -1,4 +1,4 @@
-# Add hstore to already created database
+# Add croatian config to already created database
 "${psql[@]}" --dbname="$POSTGRES_DB" <<-'EOSQL'
     -- create croatian ispell search dictionary
     CREATE TEXT SEARCH DICTIONARY croatian_ispell (
@@ -22,7 +22,7 @@
         DROP MAPPING FOR email, url, url_path, sfloat, float;
 EOSQL
 
-# Add hstore to template so all created databases will contain hstore
+# Add croatian config to template so all created databases will contain croatian
 "${psql[@]}" --dbname="template1" <<-'EOSQL'
     -- create croatian ispell search dictionary
     CREATE TEXT SEARCH DICTIONARY croatian_ispell (
