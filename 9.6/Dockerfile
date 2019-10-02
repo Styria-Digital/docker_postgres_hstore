@@ -8,5 +8,5 @@ COPY ./croatian/ /usr/share/postgresql/9.6/tsearch_data/
 COPY ./add_croatian_language_pack.sh docker-entrypoint-initdb.d/add_croatian_language_pack.sh
 
 # Add the Slovenian language pack
-COPY ./slovenian/ /usr/share/postgresql/11/tsearch_data/
+COPY ./slovenian/ /usr/share/postgresql/9.6/tsearch_data/
 COPY ./add_slovenian_language_pack.sh docker-entrypoint-initdb.d/add_slovenian_language_pack.sh
