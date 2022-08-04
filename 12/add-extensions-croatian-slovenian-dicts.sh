@@ -1,29 +1,37 @@
-# Add slovenian config to already created database
 "${psql[@]}" --dbname="$POSTGRES_DB" <<-'EOSQL'
-    -- create slovenian ispell search dictionary
-    CREATE TEXT SEARCH DICTIONARY slovenian_ispell (
+    CREATE EXTENSION IF NOT EXISTS hstore;
+    CREATE EXTENSION IF NOT EXISTS unaccent;
+
+    -- create croatian ispell search dictionary
+    CREATE TEXT SEARCH DICTIONARY croatian_ispell (
         TEMPLATE = ispell,
-        DictFile = slovenian,
-        AffFile = slovenian,
-        StopWords = slovenian
+        DictFile = croatian,
+        AffFile = croatian,
+        StopWords = croatian
     );
 
-    -- create slovenian search configuration based on 'simple' configuration
-    CREATE TEXT SEARCH CONFIGURATION slovenian ( COPY = pg_catalog.simple );
+    -- Create croatian search configuration based on 'simple' configuration
+    CREATE TEXT SEARCH CONFIGURATION croatian ( COPY = pg_catalog.simple );
 
-    -- Change slovenian search configuration to use our slovenian_ispell dictionary we created before
-    ALTER TEXT SEARCH CONFIGURATION slovenian
+    -- Change croatian search configuration to use our croatian_ispell dictionary we created before
+    ALTER TEXT SEARCH CONFIGURATION croatian
         ALTER MAPPING FOR asciiword, asciihword, hword_asciipart,
                         word, hword, hword_part
-        WITH slovenian_ispell, english_stem;
+        WITH croatian_ispell, english_stem;
+        
+    -- Create `croatian_unaccent` search configuration based on `croatian` configuration.
+    CREATE TEXT SEARCH CONFIGURATION croatian_unaccent ( COPY = croatian );
+    
+    -- Change `croatian_unaccent` search configuration to use our `unaccent` extension.
+    ALTER TEXT SEARCH CONFIGURATION croatian_unaccent
+        ALTER MAPPING FOR asciiword, asciihword, hword_asciipart,
+                          word, hword, hword_part
+        WITH unaccent, croatian_ispell, english_stem;
 
     -- Remove fulltext search mappings for special types
-    ALTER TEXT SEARCH CONFIGURATION slovenian
+    ALTER TEXT SEARCH CONFIGURATION croatian
         DROP MAPPING FOR email, url, url_path, sfloat, float;
-EOSQL
 
-# Add slovenian config to template so all created databases will contain slovenian
-"${psql[@]}" --dbname="template1" <<-'EOSQL'
     -- create slovenian ispell search dictionary
     CREATE TEXT SEARCH DICTIONARY slovenian_ispell (
         TEMPLATE = ispell,
