@@ -50,6 +50,15 @@ EOSQL
                         word, hword, hword_part
         WITH croatian_ispell, english_stem;
 
+    -- Create `croatian_unaccent` search configuration based on `croatian` configuration.
+    CREATE TEXT SEARCH CONFIGURATION croatian_unaccent ( COPY = croatian );
+    
+    -- Change `croatian_unaccent` search configuration to use our `unaccent` extension.
+    ALTER TEXT SEARCH CONFIGURATION croatian_unaccent
+        ALTER MAPPING FOR asciiword, asciihword, hword_asciipart,
+                          word, hword, hword_part
+        WITH unaccent, croatian_ispell, english_stem;
+
     -- Remove fulltext search mappings for special types
     ALTER TEXT SEARCH CONFIGURATION croatian
         DROP MAPPING FOR email, url, url_path, sfloat, float;
