@@ -1,4 +1,5 @@
 "${psql[@]}" --dbname="$POSTGRES_DB" <<-'EOSQL'
+    -- create extensions
     CREATE EXTENSION IF NOT EXISTS hstore;
     CREATE EXTENSION IF NOT EXISTS unaccent;
 

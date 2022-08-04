@@ -3,7 +3,7 @@ FROM postgres:12
 # Add the Croatian language pack
 COPY ./croatian/ /usr/share/postgresql/12/tsearch_data/
 
-# Add the Croatian language pack
+# Add the Slovenian language pack
 COPY ./slovenian/ /usr/share/postgresql/12/tsearch_data/
 
 # Add the extensions, Croatian language dict, Slovenian language dict
